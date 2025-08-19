@@ -2,6 +2,8 @@
 \usepackage{fancyhdr}
 \usepackage{amsmath}
 \usepackage{parskip}
+\usepackage{tikz}
+\usepackage{tcolorbox}
 \pagestyle{fancy}
 
 \begin{document}
@@ -46,6 +48,34 @@ is true for shearing as well. Even more surprisingly, this holds true for transf
 the dimension of the input vectors.
 
 I like the other perspective as well. The SVD of $A$ represents the action of $A$ in the basis consisting
-of the eigenvectors of $AA^T$.
+of the eigenvectors of $AA^T$. It's probably useful to take a step back and look at the analog for 
+matrix diagonalization.
+
+\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black,title=Matrix Diagonalization Analog]
+  Consider the standard basis and the basis defined by the eigenvectors of a diagonalizable $A$, which
+  we'll call $B_1$ and $B_2$ respectively. In $B_2$, the matrix $\Lambda$ transforms the point $P$
+  to $P'$. When $P$ is expressed using the standard basis vectors in $B_1$, what matrix $A$ transforms
+  $P$ to $P'$?
+  \medskip
+  \newline
+  To answer this question first take the vector coordinates representing $P$ in the standard basis and plop
+  them onto $B_2$ to get some (probably totally) different point $Q$. It turns out that $S^{-1}$, where
+  the columns of $S$ consist of the eigenvectors of $A$, transforms $Q$ to $P$. And as stated before
+  $\Lambda$ transforms $P$ to $P'$.
+  \medskip
+  \newline
+  We're not done though. We know how to take a set of coordinates representing $P$ in $B_1$ and turn 
+  them into a set of coordiantes representing $P'$ in $B_2$. We want to represent $P'$ in $B_1$. For
+  this reason we left-multiply by $S$---this results in $P'$ going to some other different point $W$ 
+  in $B_2$, but it turns out that if you take the vectors representing this $W$ in $B_2$ and plop
+  them onto $B_1$ you get $P'$. 
+  \medskip
+  \newline
+  All of this is to say that $A = S \Lambda S^{-1}$ is the matrix that transforms $P$ to $P'$ in $B_1$,
+  given that $\Lambda$ transforms $P$ to $P'$ in $B_2$.
+\end{tcolorbox}
+
+Now that we understand the matrix diagonalization analog, we can view SVD as a transformation in a new 
+basis of vectors.
 
 \end{document}
